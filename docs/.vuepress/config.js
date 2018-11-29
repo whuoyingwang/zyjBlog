@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/blog/',
+  base: '/blogweb/',
   title: 'zyj的博客',
   description: '前端,博客,blog',
   head: [
