@@ -1,0 +1,4 @@
+/* css文件通过config中的head引入 link */
+.btn {
+  color: aquamarine
+}

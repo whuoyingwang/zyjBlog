@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>初识Webpack | zyj的博客</title>
+    <meta name="description" content="前端,博客,blog">
+    <link rel="icon" href="/blog/sfz2.jpg">
+  <link rel="stylesheet" href="/blog/css/index.css" type="text/css">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.51f87dfa.css" as="style"><link rel="preload" href="/blog/assets/js/app.605d1936.js" as="script"><link rel="preload" href="/blog/assets/js/8.93e38d45.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.130ff756.js"><link rel="prefetch" href="/blog/assets/js/2.8b5c48bc.js"><link rel="prefetch" href="/blog/assets/js/3.ffb016e4.js"><link rel="prefetch" href="/blog/assets/js/4.e5abcd34.js"><link rel="prefetch" href="/blog/assets/js/5.b89e1065.js"><link rel="prefetch" href="/blog/assets/js/6.573ec0d4.js"><link rel="prefetch" href="/blog/assets/js/7.17bc6fc3.js"><link rel="prefetch" href="/blog/assets/js/9.5641f0da.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.51f87dfa.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">zyj的博客</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端系列</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/web/markdown.html" class="nav-link">markdown语法</a></li><li class="dropdown-item"><!----> <a href="/blog/web/jsweb.html" class="nav-link">js系列</a></li><li class="dropdown-item"><!----> <a href="/blog/web/webpack4.html" class="nav-link">webpack4</a></li></ul></div></div><div class="nav-item"><a href="/blog/sjms/" class="nav-link">设计模式</a></div><div class="nav-item"><a href="/blog/other/" class="nav-link">其他杂项</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端系列</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/web/markdown.html" class="nav-link">markdown语法</a></li><li class="dropdown-item"><!----> <a href="/blog/web/jsweb.html" class="nav-link">js系列</a></li><li class="dropdown-item"><!----> <a href="/blog/web/webpack4.html" class="nav-link">webpack4</a></li></ul></div></div><div class="nav-item"><a href="/blog/sjms/" class="nav-link">设计模式</a></div><div class="nav-item"><a href="/blog/other/" class="nav-link">其他杂项</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>初识Webpack</span> <!----></p> <ul class="sidebar-group-items"></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="初识webpack"><a href="#初识webpack" aria-hidden="true" class="header-anchor">#</a> 初识Webpack</h1> <p>webpack是一款前端的打包工具，用于将大量的JS文件，CSS文件等，按项目的要求（根据配置文件进行配置）,压缩打包成一个或多个固定的JS文件。这样做的好处是大大减少的项目的大小,避免重复加载,实现按需加载等。webpack能大大优化前端性能。</p> <p>需要安装webpack webpack-cli</p> <div class="language- extra-class"><pre class="language-text"><code>mkdir demo &amp;&amp; cd demo
+npm init -y
+npm install webpack webpack-cli -D
+</code></pre></div><p>安装完成后，我们将创建目录结构和文件如下:<br>
+project</p> <div class="language- extra-class"><pre class="language-text"><code>demo
+|- package.json
+|- index.html
+|- src
+  |- index.js
+</code></pre></div><p>接着在index.js中写入我们的代码<br>
+src/index.js</p> <div class="language- extra-class"><pre class="language-text"><code>import _ from 'lodash'
+import './style.css'
+function componnet () {
+  var ele = document.createElement('div')
+
+  ele.innerHTML = _.join(['Hello', 'webpack'], '~')
+  ele.classList.add('hello')
+  return ele
+}
+
+document.body.appendChild(componnet())
+</code></pre></div><p>写入css代码<br>
+src/style.css</p> <div class="language- extra-class"><pre class="language-text"><code>.hello{
+  color: red;
+}
+</code></pre></div><p>lodash是一个前端的工具库，用来处理字符串，数组等操作的util，<a href="https://www.lodashjs.com/docs/4.17.5.html" target="_blank" rel="noopener noreferrer">使用说明<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>接下来，我们开始写html
+如果不使用webpack,我们过去的写法是 将src/index.js顶部的import去掉,在html中使用&lt;script&gt;标签引入两个js文件。这样做的缺点是,不易管理js,css文件等,并且浏览器会根据js文件的引入顺序进行执行,一旦顺序没有放对,浏览器将无法正常运行网页。
+现在我们来使用webpack</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;demo2 Asset Management&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script src=&quot;./bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p>在html中只需要引入一个js文件即可。这个bundle.js文件，就是我们使用webpack将所有依赖的js,css等打包成的一个js文件。<br>
+在开始配置打包之前，我们先将项目的目录整理一下，使其更接近于生产环境。</p> <div class="language- extra-class"><pre class="language-text"><code>demo
+|- dist
+  |- index.html
+|- src
+  |- index.js
+  |- style.css
+|- package.json
+</code></pre></div><p>webpack需要在根目录建立一个固定的配置文件，名为webpack.config.js</p> <div class="language- extra-class"><pre class="language-text"><code>demo
+|- webpack.config.js
+</code></pre></div><p>编辑webpack.config.js</p> <div class="language- extra-class"><pre class="language-text"><code>const path = require('path')
+
+module.exports = {
+  entry: './src/index.js', // 入口文件。表示从哪一个js开始打包。
+  output: {                //  输出文件 
+    filename: 'bundle.js', // 输出文件名称
+    path: path.resolve(__dirname, 'dist') // 输出的js路径
+  },
+  module: {  // webpack的依赖组件
+    rules: [  // webpack采用style-loader 和 css-loader共同作用为html添加css样式
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+    ]
+  }
+}
+</code></pre></div><p>webpack的命令可以直接在shell窗口中输入webpack 即可开始打包。但是在生产环境中，通常通过配置npm的配置文件，来执行自定义的脚本。<br>
+编辑package.json</p> <div class="language- extra-class"><pre class="language-text"><code>···
+&quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;
+  },
+···
+</code></pre></div><p>最后，执行npm run build即可开始webpack的打包，打包完成后，可以看见在dist目录下生成了我们需要的bundle.js文件。改文件自动打包了lodash依赖和css依赖，我们的html只需要引用这个bundle.js文件，就已经集成了我们所需要的js依赖。</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/blog/assets/js/8.93e38d45.js" defer></script><script src="/blog/assets/js/app.605d1936.js" defer></script>
+  </body>
+</html>
