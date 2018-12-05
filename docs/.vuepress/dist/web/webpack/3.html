@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>webpack开发环境搭建 | zyj的博客</title>
+    <meta name="description" content="前端,博客,blog">
+    <link rel="icon" href="/blogweb/sfz2.jpg">
+  <link rel="stylesheet" href="/blogweb/css/index.css" type="text/css">
+    
+    <link rel="preload" href="/blogweb/assets/css/0.styles.821a98e9.css" as="style"><link rel="preload" href="/blogweb/assets/js/app.60ca3123.js" as="script"><link rel="preload" href="/blogweb/assets/js/10.10f53d74.js" as="script"><link rel="prefetch" href="/blogweb/assets/js/11.204a48ec.js"><link rel="prefetch" href="/blogweb/assets/js/12.fb33d71e.js"><link rel="prefetch" href="/blogweb/assets/js/2.c42073fb.js"><link rel="prefetch" href="/blogweb/assets/js/3.7f6a1f26.js"><link rel="prefetch" href="/blogweb/assets/js/4.13c608c5.js"><link rel="prefetch" href="/blogweb/assets/js/5.b89e1065.js"><link rel="prefetch" href="/blogweb/assets/js/6.573ec0d4.js"><link rel="prefetch" href="/blogweb/assets/js/7.7daf4ece.js"><link rel="prefetch" href="/blogweb/assets/js/8.2b6c56d6.js"><link rel="prefetch" href="/blogweb/assets/js/9.ffed67ed.js">
+    <link rel="stylesheet" href="/blogweb/assets/css/0.styles.821a98e9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blogweb/" class="home-link router-link-active"><!----> <span class="site-name">zyj的博客</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blogweb/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端系列</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogweb/web/markdown.html" class="nav-link">markdown语法</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/jsweb.html" class="nav-link">js系列</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/webpack4.html" class="nav-link">webpack4</a></li></ul></div></div><div class="nav-item"><a href="/blogweb/sjms/" class="nav-link">设计模式</a></div><div class="nav-item"><a href="/blogweb/other/" class="nav-link">其他杂项</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blogweb/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端系列</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogweb/web/markdown.html" class="nav-link">markdown语法</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/jsweb.html" class="nav-link">js系列</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/webpack4.html" class="nav-link">webpack4</a></li></ul></div></div><div class="nav-item"><a href="/blogweb/sjms/" class="nav-link">设计模式</a></div><div class="nav-item"><a href="/blogweb/other/" class="nav-link">其他杂项</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>webpack开发环境搭建</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blogweb/web/webpack/3.html#使用source-map" class="sidebar-link">使用source map</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blogweb/web/webpack/3.html#使用webpack-dev-server" class="sidebar-link">使用webpack-dev-server</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blogweb/web/webpack/3.html#使用webpack-dev-middleware" class="sidebar-link">使用webpack-dev-middleware</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="webpack开发环境搭建"><a href="#webpack开发环境搭建" aria-hidden="true" class="header-anchor">#</a> webpack开发环境搭建</h1> <p>首先搭建一个项目环境,并安装webpack webpack-cli lodash</p> <p>然后构建项目目录</p> <div class="language- extra-class"><pre class="language-text"><code>project
+|- src
+  |- index.js
+  |- print.js
+|- package.json
+|- webpack.config.js
+</code></pre></div><h2 id="使用source-map"><a href="#使用source-map" aria-hidden="true" class="header-anchor">#</a> 使用source map</h2> <p>source map是在开发中用来追踪错误和警告在源代码中位置的插件。首先webpack存在多个js打包成为一个bundle的情况：</p> <div class="language- extra-class"><pre class="language-text"><code>entry: {
+  app: ['./1.js', './2.js', './3.js']
+},
+output: {
+  filename: 'bundle.js',
+  path: path.resolve(__dirname, 'dist')
+}
+</code></pre></div><p>1.js, 2.js, 3.js三个js文件都被打包进入bundle.js文件中，当其中某一个文件出错时浏览器都会粗略的提示bundle.js出错，而并不能追踪到具体的文件，这对于我们开发环境来说是很不利的。source map的存在就是为了解决这一问题，当然source map在生产环境中也存在着配置可以使用，但是会影响代码加载和构建的速度。具体请参考source map的配置文档。当前代码中简单采用source map的inline-source-map选项。注意，该选项只有在dev环境才能使用，因此编译的时候要加入--development</p> <p>webpack.config.js文件如下</p> <div class="language- extra-class"><pre class="language-text"><code>const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+module,exports = {
+  entry: { // 多个入口。
+    app: './src/index.js',
+    print: './src/print.js'
+  },
+  devtool: 'inline-source-map', // source-map用于调试，该模式只能再dev环境下生效。详情参考文档
+  
+  // devserver提供一个简单的web服务器，能够进行live reloading 
+  // 需要使用 webpack-dev-server --open
+  // 或者跟webpack-dev-middleware一起使用，实现本地localhost
+  // devServer: {
+  //   contentBase: './dist'
+  // },
+  plugins: [
+    new CleanWebpackPlugin(['dist']), // 用于在每次构建时，清理dist文件夹
+    new HtmlWebpckPlugin({ // 会自动生成index.html，并自动引入js依赖
+      title: 'Output Management'
+    })
+  ],
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.css$/,
+  //       use: ['style-loader', 'css-loader']
+  //     }, 
+  //     {
+  //       test: /\.(png|jpg|svg|gif)$/,
+  //       use: ['file-loader']
+  //     }
+  //   ]
+  // },
+  output: {
+    // 多入口，必须有多输出, 根据name和hash生成，确保每一次生成的JS文件都不一样
+    filename: '[name].[hash].bundle.js', 
+    path: path.resolve(__dirname, 'dist'),
+    // publicPath配置会再自动生成的html的script标签中体现，引入的具体路径之前加上该配置目录，模拟CDN引用
+    // 比如配置 '/assest/',则script src=&quot;/assest/***.js */&quot;
+    publicPath: '/'  // 该字段会被dev server使用，用来决定在哪个目录下加载文件。通常使用'/'根目录
+  }
+  
+}
+</code></pre></div><p>index.js</p> <div class="language- extra-class"><pre class="language-text"><code>import _ from 'lodash'
+import printMe from './print.js'
+
+function component () {
+  var ele = document.createElement('div')
+  var btn = document.createElement('button')
+
+  ele.innerHTML = _.join(['Hello', 'webpack', '来点中文吧'], '~')
+  
+  btn.innerHTML = &quot;Click me and check the console!&quot;
+  btn.onclick = printMe
+
+  ele.appendChild(btn)
+  return ele
+}
+
+document.body.appendChild(component())
+</code></pre></div><p>print.js</p> <div class="language- extra-class"><pre class="language-text"><code>export default function printMe() {
+  console.log('I get called from print.js!')
+  consola.error('error!!!') //  故意写错，使用source map编译之后，可以很直观看到在print.js中报错
+}
+</code></pre></div><p>package.json</p> <div class="language- extra-class"><pre class="language-text"><code>&quot;scripts&quot;: {
+  &quot;build:dev&quot;: &quot;webpack --development&quot;
+}
+</code></pre></div><p>执行<code>npm run build:dev</code>后，打开index.html，可以在日志面板很清楚看到，在print.js文件中报错。</p> <h2 id="使用webpack-dev-server"><a href="#使用webpack-dev-server" aria-hidden="true" class="header-anchor">#</a> 使用webpack-dev-server</h2> <p><code>webpack-dev-server</code>提供了一个简单的web服务器搭载前端项目，实现live reloading<br>
+首先我们安装<code>webpack-dev-server</code></p> <div class="language- extra-class"><pre class="language-text"><code>npm install -D webpack-dev-server
+</code></pre></div><p>设置webpack.config.js</p> <div class="language- extra-class"><pre class="language-text"><code>···
+// devserver提供一个简单的web服务器，能够进行live reloading 
+// 需要使用 webpack-dev-server --open
+// 或者跟webpack-dev-middleware一起使用，实现本地localhost
+devServer: {
+  contentBase: './dist'
+},
+···
+</code></pre></div><p>package.json中添加指令</p> <div class="language- extra-class"><pre class="language-text"><code>&quot;script&quot;: {
+  &quot;start&quot;: &quot;webpack-dev-server --open&quot;
+}
+</code></pre></div><p>运行<code>npm run start</code></p> <h2 id="使用webpack-dev-middleware"><a href="#使用webpack-dev-middleware" aria-hidden="true" class="header-anchor">#</a> 使用webpack-dev-middleware</h2> <p>webpack-dev-middleware配合dev-server使用，来实现更多需求。
+需要在webpack.config.js中增加配置</p> <div class="language- extra-class"><pre class="language-text"><code>···
+output: {
+  ···
+    // publicPath配置会再自动生成的html的script标签中体现，引入的具体路径之前加上该配置目录，模拟CDN引用
+    // 比如配置 '/assest/',则script src=&quot;/assest/***.js */&quot;
+    publicPath: '/'  // 该字段会被dev server使用，用来决定在哪个目录下加载文件。通常使用'/'根目录
+  ···
+}
+···
+</code></pre></div><p>我们在project项目下，新建一个服务器文件server.js，该服务器文件采用node.js中的express框架。</p> <p>projec/server.js</p> <div class="language- extra-class"><pre class="language-text"><code>const express = require('express')
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+
+const app = express()
+const config = require('./webpack.config.js')
+const compiler = webpack(config)
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath
+}))
+
+var server = app.listen(8999, function() {
+  console.log(&quot;app start on port &quot; + server.address().port)
+  console.log('server', server.address())
+})
+
+// app.get('/a1', (req, res) =&gt; {
+//   console.log('/a1请求')
+//   res.send('a1 Hello')
+// })
+</code></pre></div><p>package.json新增指令</p> <div class="language- extra-class"><pre class="language-text"><code>···
+&quot;script&quot;: {
+  ···
+  &quot;server&quot;: &quot;node server.js&quot;
+  ···
+}
+···
+</code></pre></div><p>执行<code>npm run server</code>，打开localhost:8999即可看到网页。</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/blogweb/assets/js/10.10f53d74.js" defer></script><script src="/blogweb/assets/js/app.60ca3123.js" defer></script>
+  </body>
+</html>

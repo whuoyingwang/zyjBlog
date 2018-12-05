@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>webpack输出管理。 | zyj的博客</title>
+    <meta name="description" content="前端,博客,blog">
+    <link rel="icon" href="/blogweb/sfz2.jpg">
+  <link rel="stylesheet" href="/blogweb/css/index.css" type="text/css">
+    
+    <link rel="preload" href="/blogweb/assets/css/0.styles.821a98e9.css" as="style"><link rel="preload" href="/blogweb/assets/js/app.60ca3123.js" as="script"><link rel="preload" href="/blogweb/assets/js/9.ffed67ed.js" as="script"><link rel="prefetch" href="/blogweb/assets/js/10.10f53d74.js"><link rel="prefetch" href="/blogweb/assets/js/11.204a48ec.js"><link rel="prefetch" href="/blogweb/assets/js/12.fb33d71e.js"><link rel="prefetch" href="/blogweb/assets/js/2.c42073fb.js"><link rel="prefetch" href="/blogweb/assets/js/3.7f6a1f26.js"><link rel="prefetch" href="/blogweb/assets/js/4.13c608c5.js"><link rel="prefetch" href="/blogweb/assets/js/5.b89e1065.js"><link rel="prefetch" href="/blogweb/assets/js/6.573ec0d4.js"><link rel="prefetch" href="/blogweb/assets/js/7.7daf4ece.js"><link rel="prefetch" href="/blogweb/assets/js/8.2b6c56d6.js">
+    <link rel="stylesheet" href="/blogweb/assets/css/0.styles.821a98e9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blogweb/" class="home-link router-link-active"><!----> <span class="site-name">zyj的博客</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blogweb/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端系列</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogweb/web/markdown.html" class="nav-link">markdown语法</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/jsweb.html" class="nav-link">js系列</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/webpack4.html" class="nav-link">webpack4</a></li></ul></div></div><div class="nav-item"><a href="/blogweb/sjms/" class="nav-link">设计模式</a></div><div class="nav-item"><a href="/blogweb/other/" class="nav-link">其他杂项</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blogweb/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端系列</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogweb/web/markdown.html" class="nav-link">markdown语法</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/jsweb.html" class="nav-link">js系列</a></li><li class="dropdown-item"><!----> <a href="/blogweb/web/webpack4.html" class="nav-link">webpack4</a></li></ul></div></div><div class="nav-item"><a href="/blogweb/sjms/" class="nav-link">设计模式</a></div><div class="nav-item"><a href="/blogweb/other/" class="nav-link">其他杂项</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>webpack输出管理。</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blogweb/web/webpack/2.html#预先准备" class="sidebar-link">预先准备</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blogweb/web/webpack/2.html#htmlwebpackplugin插件" class="sidebar-link">HtmlWebpackPlugin插件</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blogweb/web/webpack/2.html#cleanwebpackplugin插件" class="sidebar-link">CleanWebpackPlugin插件</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="webpack输出管理。"><a href="#webpack输出管理。" aria-hidden="true" class="header-anchor">#</a> webpack输出管理。</h1> <p>上一章中，对于js管理来说，我们使用webpack打包生成固定名字的JS文件，然后在html中手动引入。然后在生产环境中，js文件数量会非常多，意味着我们需要手动引入大量的js文件，并且当我们的js文件名称更改之后，还要手动修改引入的js文件，这显然是不可取的。<br>
+本章我们将介绍，如何处理生产环境中的不同js文件的打包输出和自动引入。</p> <h2 id="预先准备"><a href="#预先准备" aria-hidden="true" class="header-anchor">#</a> 预先准备</h2> <p>首先我们初始化一个项目</p> <div class="language- extra-class"><pre class="language-text"><code>npm init -y
+</code></pre></div><p>初始化完成后，我们搭建项目结构</p> <div class="language- extra-class"><pre class="language-text"><code>demo3
+|- dist
+  |- index.html
+|- src
+  |- index.js
+  |- print.js
+|- package.json
+|- webpack.config.js
+</code></pre></div><p>然后我们安装依赖文件 lodash webpack webpack-cli</p> <div class="language- extra-class"><pre class="language-text"><code>npm install lodash
+npm install -D webpack webpack-cli
+</code></pre></div><p>src/index.js</p> <div class="language- extra-class"><pre class="language-text"><code>import _ from 'lodash'
+import printMe from './print.js'
+
+function component () {
+  var ele = document.createElement('div')
+  var btn = document.createElement('button')
+
+  ele.innerHTML = _.join(['Hello', 'Webpack'], '~')
+  
+  btn.innerHTML = &quot;Click me and check the console&quot;
+  btn.onclick = printMe
+
+  ele.appendChlid(btn)
+  return ele
+}
+
+document.body.appendChild(component())
+</code></pre></div><p>src/print.js</p> <div class="language- extra-class"><pre class="language-text"><code>export default function printMe() {
+  console.log('called from printMe')
+}
+</code></pre></div><p>dist/index.html文件中我们写入</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Output Management&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;app.bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;print.bundle.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p>目前，我们还是采用index.html手动引入的方式，可以看到，我们将使用webpack打包生成app.bundle.js和print.bundle.js两个依赖文件。</p> <p>webpack.config.js写入</p> <div class="language- extra-class"><pre class="language-text"><code>const path = require('path')
+
+module.exports = {
+  entry: { // 多个入口
+    app: './src/index.js',
+    print: './src/print.js'
+  },
+  output: {
+    // 每个入口对应的是一个出口文件。多个输出文件，根据name自动生成
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+}
+</code></pre></div><p>修改package.json的打包命令</p> <div class="language- extra-class"><pre class="language-text"><code>···
+&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;build&quot;: &quot;webpack&quot;
+  },
+···
+</code></pre></div><p>执行打包语句npm run build可以看到结果。在dist目录中自动打包生成了app.bundle.js文件和print.bunlde.js文件。当我们的js文件改名，或者又新增了js文件时，此时我们只能再手动修改index.html中的<code>&lt;srcipt&gt;</code>标签，很显然这种做法在生产环境下是不可取的。接下来我们就使用webpack提供的HtmlWebpackPlugin插件，来自动生成index.html文件。</p> <h2 id="htmlwebpackplugin插件"><a href="#htmlwebpackplugin插件" aria-hidden="true" class="header-anchor">#</a> HtmlWebpackPlugin插件</h2> <p>该插件的作用是自动管理index.html。简化了HTML文件的创建。<br>
+安装 <code>npm install html-webpack-plugin</code><br>
+在webpack.config.js中引入</p> <div class="language- extra-class"><pre class="language-text"><code>entry: ···
+···
+plugins: [
+  new HtmlWebpackPlugin({ // 会自动生成index.html，并自动引入js依赖
+    title: 'Output Management'
+  })
+],
+output: ···
+···
+</code></pre></div><p>删除dist文件夹下的所有文件，执行<code>npm run build</code>可以看到，在dist文件夹中又自动生成了index.html</p> <h2 id="cleanwebpackplugin插件"><a href="#cleanwebpackplugin插件" aria-hidden="true" class="header-anchor">#</a> CleanWebpackPlugin插件</h2> <p>之前的操作中，我们每一次build之前都要手动删除dist文件夹中的文件，并没有完全的自动化，webpack中插件早已帮我们考虑到了这一步。引入CleanWebpackPlugin插件，让其自动在build时候，帮我们删除掉dist目录。<br>
+安装插件<code>npm install -D clean-webpack-plugin</code>
+配置插件<br>
+此时webpack.config.js变成下面这样</p> <div class="language- extra-class"><pre class="language-text"><code>const path = require('path')
+const HtmlWebpckPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+module.exports = {
+  entry: { // 多个入口。
+    app: './src/index.js',
+    print: './src/print.js'
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist']), // 用于在每次构建时，清理dist文件夹
+    new HtmlWebpckPlugin({ // 会自动生成index.html，并自动引入js依赖
+      title: 'Output Management'
+    })
+  ],
+  output: {
+    // 多入口，必须有多输出, 根据name和hash生成，确保每一次生成的JS文件都不一样
+    filename: '[name].[hash].bundle.js', 
+    path: path.resolve(__dirname, 'dist')
+  }
+}
+</code></pre></div><p>运行<code>npm run build</code>可以看到，webpack帮我们自动删除了dist文件，然后才开始构建。</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/blogweb/assets/js/9.ffed67ed.js" defer></script><script src="/blogweb/assets/js/app.60ca3123.js" defer></script>
+  </body>
+</html>
